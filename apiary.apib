@@ -1,0 +1,96 @@
+FORMAT: 1A
+HOST: http://ceb.apiblueprint.org/
+
+# CEB
+
+The API allows clients to consume CEB information in a JSON format.
+
+## Trending Collection [/trending]
+
+### List Trending [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id":321509,
+                "title": "Podcast: What 2016 Holds for Learning & Development Teams",
+                "link": "https://www.cebglobal.com/blogs/podcast-what-2016-holds-for-learning-development-teams/",
+                "publishDate":"Tue, 15 Dec 2015 08:15:05 +0000",
+                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-and-development-LD-online-learning-e-learning-300x200.jpg",
+                "category":["Audio", "Blog", "Human Resources", "Talend Development and Training"],
+                "description":"What seem like ever growing demands to be more productive has made employees far less likely to think they have time for formal learning courses. L&#038;D teams will need to make learning fit employees' less structured working lives, and help employees thrive in a more collaborative culture."
+            },
+            {
+                "id":321495,
+                "title": "Internal Audit: Data Privacy is 2016’s Biggest Risk",
+                "link": "https://www.cebglobal.com/blogs/internal-audit-data-privacy-is-2016s-biggest-risk/",
+                "publishDate":"Tue, 15 Dec 2015 08:00:58 +0000",
+                "thumbnail":"https://www.cebglobal.com/blogs/files/2013/02/maximize-business-value-of-information-300x185.jpg",
+                "category":["Blog", "Information and Data Risk Management", "Risk & Audit"],
+                "description":"The high risk and high likelihood of the threat of a data privacy breach affecting any of the world's large firms has led their internal audit teams to say that \"data privacy\" is the number one risk they will focus on in the next 6 to 12 months."
+            },
+            {
+                "id":321453,
+                "title": "High-Potential Employees: Focus on ‘How’, Not ‘What’ They Learn",
+                "link": "https://www.cebglobal.com/blogs/high-potential-employees-its-not-what-but-how-they-learn-that-brings-results/",
+                "publishDate":"Tue, 15 Dec 2015 08:00:40 +0000",
+                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-on-the-job-collaborate-teamwork-business-people-challenge-problem-300x200.jpg",
+                "category":["Blog", "High Potential Employees", "Human Resources"],
+                "description":"Nearly two-thirds of high-potential employees say they are unhappy with the development their company provides for them. Giving them the right job-related experience, and action plans to help them learn from that, can boost their performance by as much as 30%."
+            },
+            {
+                "id":321453,
+                "title": "CFOs Say They Will Prioritize Talent in 2016",
+                "link": "https://www.cebglobal.com/blogs/cfos-say-they-will-prioritize-talent-in-2016/",
+                "publishDate":"Tue, 15 Dec 2015 08:00:40 +0000",
+                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-on-the-job-collaborate-teamwork-business-people-challenge-problem-300x200.jpg",
+                "category":["Blog", "High Potential Employees", "Human Resources"],
+                "description":"Nearly two-thirds of high-potential employees say they are unhappy with the development their company provides for them. Giving them the right job-related experience, and action plans to help them learn from that, can boost their performance by as much as 30%."
+            }
+        ]
+        
++ Response 404 (application/json)
+
+        {
+            "error": "There was a problem. Please retry later."
+        }
+        
+## Trending Item [/trending/{id}]
+
++ Parameters
+    + id (number) - ID of the Trending Item in the form of an integer
+
+### View a Trending Item Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+                        {
+                "id":321509,
+                "title": "Podcast: What 2016 Holds for Learning & Development Teams",
+                "subtitle":"L&D teams will need to make learning fit employees' less structured working lives, and help them thrive in a more collaborative culture",
+                "link": "https://www.cebglobal.com/blogs/podcast-what-2016-holds-for-learning-development-teams/",
+                "publishDate":"Tue, 15 Dec 2015 08:15:05 +0000",
+                "media":
+                { 
+                  "url":"https://www.cebglobal.com/blogs/files/2015/12/Learning-and-development-LD-online-learning-e-learning-300x200.jpg",
+                  "type":"image"  
+                },
+                "category":["Audio", "Blog", "Human Resources", "Talend Development and Training"],
+                "description":"What seem like ever growing demands to be more productive has made employees far less likely to think they have time for formal learning courses. L&#038;D teams will need to make learning fit employees' less structured working lives, and help employees thrive in a more collaborative culture."
+          ,
+                "content":"The growing demands for employees to be more productive in recent years has meant people’s working days seem increasingly busy (even if the extra work isn’t always productive) and make them feel they have little time for formal learning courses.\n\nWhile outside of their working life, employees are now used to consuming information in more bite sized and personalized formats. Instead of watching an hour long news program, they can easily find the top headlines on social media, for example. Employees, therefore, want quick, on-the-go content, and are eager for learning and development solutions that are increasingly mobile and individualized.\n\nFinally, the need for employees to collaborate far more means learning needs to be more social. Employees now tend to report to a higher number of people in “matrixed” reporting structures and often must work with colleagues that they have never met or have much in common with (an engineer in Australia and a risk manager in Finland, say). This increasingly collaborative environment offers new challenges and opportunities for learning and development executives.\n\nMark Van Buren, practice leader of the CEB Learning and Development Leadership Council, discusses these trends and what they’ll mean for L&D professionals next year."
+          },
+          "externalMedia":
+          {
+            "url":"http://www.blogtalkradio.com/cebhr/2015/12/14/whats-in-store-for-learning-development-in-2016",
+            "Description":"Use this link to listen to the full podcast."
+          }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": "Item not found."
+        }
