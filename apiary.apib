@@ -5,98 +5,100 @@ HOST: http://ceb.apiblueprint.org/
 
 The API allows clients to consume CEB information in a JSON format.
 
-## Trending Collection [/trending/{page}]
+## Trending Collection [/trending]
 
-+ Parameters
-    + page (number, optional) - Represents the page for which data is returned
-        + Default: 1
+### List Trending [POST]
++ Request (application/json)
+    
+    + Attributes
 
-### List Trending [GET]
-
+        + model (string, required) - Specifies the scope of content to fetch. Should always be "Trending"
+        + scope (string, required) - Specifies the scope of the data to fetch. Possible values are: MostRecent, Practice,Details. 
+        + practiceId (array[string], optional) - Array of practice IDs. Each value should be a string in double quotes
+        + path (string, optional) - URL of a blog to fetch. 
+        + start (number, optional) - This parameter is used to paginate results from a query. When specified, it indicates the offset in the result set for the queries where the set of returned documents should begin. The default value is "0"
+        + rows (number, optional) - This parameter is used to paginate results from a query. It specifies the maximum number of documents from the result set to return to the client. The default value is "10"
+        
 + Response 200 (application/json)
-
-        [
+    
+    + Headers
+            
+            status:0,
+            QTime:0
+            
+    + Body
+    
             {
-                "id":321509,
-                "title": "Podcast: What 2016 Holds for Learning & Development Teams",
-                "link": "https://www.cebglobal.com/blogs/podcast-what-2016-holds-for-learning-development-teams/",
-                "publishDate":"Tue, 15 Dec 2015 08:15:05 +0000",
-                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-and-development-LD-online-learning-e-learning-300x200.jpg",
-                "category":["Audio", "Blog", "Human Resources", "Talend Development and Training"],
-                "description":"What seem like ever growing demands to be more productive has made employees far less likely to think they have time for formal learning courses. L&#038;D teams will need to make learning fit employees' less structured working lives, and help employees thrive in a more collaborative culture."
-            },
-            {
-                "id":321495,
-                "title": "Internal Audit: Data Privacy is 2016’s Biggest Risk",
-                "link": "https://www.cebglobal.com/blogs/internal-audit-data-privacy-is-2016s-biggest-risk/",
-                "publishDate":"Tue, 15 Dec 2015 08:00:58 +0000",
-                "thumbnail":"https://www.cebglobal.com/blogs/files/2013/02/maximize-business-value-of-information-300x185.jpg",
-                "category":["Blog", "Information and Data Risk Management", "Risk & Audit"],
-                "description":"The high risk and high likelihood of the threat of a data privacy breach affecting any of the world's large firms has led their internal audit teams to say that \"data privacy\" is the number one risk they will focus on in the next 6 to 12 months."
-            },
-            {
-                "id":321453,
-                "title": "High-Potential Employees: Focus on ‘How’, Not ‘What’ They Learn",
-                "link": "https://www.cebglobal.com/blogs/high-potential-employees-its-not-what-but-how-they-learn-that-brings-results/",
-                "publishDate":"Tue, 15 Dec 2015 08:00:40 +0000",
-                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-on-the-job-collaborate-teamwork-business-people-challenge-problem-300x200.jpg",
-                "category":["Blog", "High Potential Employees", "Human Resources"],
-                "description":"Nearly two-thirds of high-potential employees say they are unhappy with the development their company provides for them. Giving them the right job-related experience, and action plans to help them learn from that, can boost their performance by as much as 30%."
-            },
-            {
-                "id":321453,
-                "title": "CFOs Say They Will Prioritize Talent in 2016",
-                "link": "https://www.cebglobal.com/blogs/cfos-say-they-will-prioritize-talent-in-2016/",
-                "publishDate":"Tue, 15 Dec 2015 08:00:40 +0000",
-                "thumbnail":"https://www.cebglobal.com/blogs/files/2015/12/Learning-on-the-job-collaborate-teamwork-business-people-challenge-problem-300x200.jpg",
-                "category":["Blog", "High Potential Employees", "Human Resources"],
-                "description":"Nearly two-thirds of high-potential employees say they are unhappy with the development their company provides for them. Giving them the right job-related experience, and action plans to help them learn from that, can boost their performance by as much as 30%."
+                response: {
+                            numFound:2,
+                            start:0,
+                            docs:
+                            [{
+                                description :"Responses to CEB's annual survey of finance executives around the world show that CFOs will focus on hiring and developing the right staff to deal with the new demands being placed on their functions.",
+                                title: "CFOs Say They Will Prioritize Talent in 2016",
+                                path: "https://www.cebglobal.com/blogs/cfos-say-they-will-prioritize-talent-in-2016/",
+                                imageurl: "https://www.cebglobal.com/blogs/files/2014/05/Business-People-Teams-Silhouette-300x200.jpg",
+                                practiceId: 1,
+                                publishdate: "2015-12-14T08:00:57Z"
+                            },
+                            {
+                                description:"Less than a quarter of in-house legal teams specify how outside counsel should prioritize their work for a client. One company in CEB's networks has a good process to help outside counsel work on the right things at the right time.",
+                                title:"Corporate Law: Help Outside Counsel Make Better Tradeoffs",
+                                path:"https://www.cebglobal.com/blogs/corporate-law-help-outside-counsel-make-better-tradeoffs/",
+                                imageurl:"https://www.cebglobal.com/blogs/files/2014/08/Abstract-Businessman-Weighing-ROI-Return-on-Scales-300x200.jpg",
+                                practiceId:2, 
+                                publishdate:"2015-12-01T08:00:08Z"
+                            }]
+                        }
             }
-        ]
+
         
 + Response 404 (application/json)
 
         {
-            "error": "There was a problem. Please retry later."
+            error: "There was a problem. Please retry later."
         }
         
-## Trending Item [/trending/item/{id}]
+        
+## Trending Item [/trending/item]
 
-+ Parameters
-    + id (number) - ID of the Trending Item in the form of an integer
+### List Trending Item [POST]
++ Request (application/json)
 
-### View a Trending Item Detail [GET]
-
+    + Attributes
+    
+        + model (string, required) - Specifies the scope of content to fetch. Should always be "Trending"
+        + scope (string, required) - Specifies the scope of the data to fetch. Value is Details.
+        + path (string, required) - URL of a blog to fetch. 
+            
 + Response 200 (application/json)
+    + Headers
+            
+            status:0,
+            QTime:0
+    
+    + Body   
+    
+            {
+                response: {
+                            numFound:1,
+                            start:0,
+                            docs:
+                            [{
+                                description:"Less than a quarter of in-house legal teams specify how outside counsel should prioritize their work for a client. One company in CEB's networks has a good process to help outside counsel work on the right things at the right time.",
+                                title:"Corporate Law: Help Outside Counsel Make Better Tradeoffs",
+                                path:"https://www.cebglobal.com/blogs/corporate-law-help-outside-counsel-make-better-tradeoffs/",
+                
+                                bloghtml:"<p><img class=\"alignright size-medium wp-image-310258\" src=\"https://www.cebglobal.com/blogs/files/2014/08/Abstract-Businessman-Weighing-ROI-Return-on-Scales-300x200.jpg\" alt=\"Abstract Businessman Weighing ROI Return on Scales\" width=\"300\" height=\"200\" />Most parents wouldnвЂ™t leave their child with a babysitter without first laying out the ground rules for their time away.</p>\n<p>They&#8217;ll probablyВ come to an understanding with the sitter theyвЂ™ve hired about what to do in the most common situations: so no playing of video games before homework is done, call the parents if anyone becomes ill, no sugar after 7 pm, bedtime at 8:30 pm, and so on. And they will also explain which instructions are most important, such as informing parents about sickness takes precedence over enforcing bedtime or the video game ban.</p>\n<h3>It&#8217;s Not Just Children that Need Babysitting</h3>\n<p>Not only is this a good arrangement for looking after your nearest and dearest, it makes sense for a whole host of situations where youВ pass on responsibility for something important. Like, for example, general counsel instructing law firms to handle their case matters.</p>\n<p>But many in-house legal teams donвЂ™t seem to agree. Less than a quarter of teams specify priorities forВ how matters ought to be carried out, which suggests that the outcome of the matter is viewed as much more important. In other words, they leave babysitters to their own devices so long as the child is breathing and intact when they get home.</p>\n<p>This tends to happen because of two misguided beliefs. First, that outside counsel already understand the legal team&#8217;s business priorities based on numerous prior interactions and, second, that it&#8217;s not worth the time it takes to define these kinds of priorities when instructing a law firm.</p>\n<h3>Don&#8217;t Let Legal Firms Decide OnВ Your Strategy</h3>\n<p>But the reality is that, in the absence of additional guidance, outside law firms will develop their own ideas about how to support a particular matter based on their own past experience. To boot, it takesВ less<i>В </i>time to set expectations at the beginning of a case matter than it does to rework misaligned workВ later.</p>\n<p>Most legal teams do try to influence law firm behavior вЂ“ most commonly through billing and staffing guidelines вЂ“ but thatвЂ™s not enough to get the right work product because it neglects to show the law firm how to make tradeoffs when any conflict arises. To do that, the in-house legal team should be establishing clear priorities for different matter categories.</p>\n<p>One route to take is to weigh in atВ specific intervals laid out in advance, as the legal team at member company in <a href=\"https://www.cebglobal.com/exbd/compliance-legal/legal/index.page?\">CEB&#8217;s network of legal executives</a> does.</p>\n<h3>Breaking Point</h3>\n<p>Another member has a process to teach outside counsel about the legal team&#8217;s needs before the work begins. This company is a US-based retailer of car parts and accessories, and the legal team used to manage outside-counsel matters on anВ <i>ad hoc</i>В basis. They encountered the same quality problems over and over again: information overload that buried the essentials, little consideration of corporate strategy, and opaque invoicing (see chart 1).</p>\n<div class=\"text parbase articletext section\">\n<p>Together, these drawbacks led to higher costs and lower productivity for in-house lawyers. So Legal createdВ a process that got the company and law firms in sync.</p>\n<p><img class=\"aligncenter size-full wp-image-321271\" src=\"https://www.cebglobal.com/blogs/files/2015/12/Problems-with-outside-counsel.jpg\" alt=\"Problems with outside counsel\" width=\"600\" height=\"375\" /></p>\n<p><strong>Chart 1: Problems with outside counsel</strong> В Source: CEB analysis</p>\n<h3>Assessing Business Need: A Few Surprises</h3>\n<p>The legal team began by figuring out the most critical service needs for each type of matter.В To make sure that none slipped through the cracks, the team then led discussions with senior line managers and other business leaders that teased out previously unarticulated areas of importance across the company.</p>\n<p>Questions included:</p>\n<ul>\n<li>How often does uncertainty about matter outcomes delay important business decisions?</li>\n<li>Do you believe that our outside counsel understand our business goals?</li>\n<li>Are you satisfied with your understanding of how we could prevent future similar litigation?</li>\n</ul>\n<p>With responses in hand, the legal team translated the feedback, adding needs that the team would not have thought to specify otherwise (see chart 2).</p>\n<p>Finally, Legal compiled high-level guidelines into a grid, covering each need the legal department had across several major matter categories.В This saves time for in-house attorneys who would otherwise have to think through how to align work for each separate matter to fit what business partnersВ need.</p>\n<p><img class=\"aligncenter size-full wp-image-321270\" src=\"https://www.cebglobal.com/blogs/files/2015/12/Business-review-and-legal-guidance.jpg\" alt=\"Business review and legal guidance\" width=\"600\" height=\"301\" /></p>\n</div>\n<p><strong>Chart 2:В Business review and legal guidance</strong> В Source: CEB analysis</p>\n<div class=\"text parbase articletext section\">\n<p>&nbsp;</p>\n<div style=\"background-color: #cee5f5; padding: 10px 30px 10px 30px;\">\n<h3>More On&#8230;</h3>\n<ul>\n<li>\n<p style=\"padding-bottom: 2px;\">Learn more about <a href=\"http://img.en25.com/Web/CEB/CEB_Legal_Managing_Law_Firms_for_Maximum_Value_Preview_Report_B.pdf?cid=70134000000OE4QAAW\" target=\"_blank\">how to manage outside legal services more effectively</a>В (pdf).</p>\n</li>\n</ul>\n</div>\n<p>&nbsp;</p>\n</div>\n",        "
+                                imageurl:"https://www.cebglobal.com/blogs/files/2014/08/Abstract-Businessman-Weighing-ROI-Return-on-Scales-300x200.jpg",
+                                practiceId:"1",
+                                publishdate:"2015-12-01T08:00:08Z"
+                            }]
+                        }
+            }
+
++ Response 400 (application/json)
 
         {
-                        {
-                "id":321509,
-                "title": "Podcast: What 2016 Holds for Learning & Development Teams",
-                "subtitle":"L&D teams will need to make learning fit employees' less structured working lives, and help them thrive in a more collaborative culture",
-                "link": "https://www.cebglobal.com/blogs/podcast-what-2016-holds-for-learning-development-teams/",
-                "publishDate":"Tue, 15 Dec 2015 08:15:05 +0000",
-                "media":
-                { 
-                  "url":"https://www.cebglobal.com/blogs/files/2015/12/Learning-and-development-LD-online-learning-e-learning-300x200.jpg",
-                  "type":"image"  
-                },
-                "category":["Audio", "Blog", "Human Resources", "Talend Development and Training"],
-                "description":"What seem like ever growing demands to be more productive has made employees far less likely to think they have time for formal learning courses. L&#038;D teams will need to make learning fit employees' less structured working lives, and help employees thrive in a more collaborative culture."
-          ,
-                "content":"The growing demands for employees to be more productive in recent years has meant people’s working days seem increasingly busy (even if the extra work isn’t always productive) and make them feel they have little time for formal learning courses.\n\nWhile outside of their working life, employees are now used to consuming information in more bite sized and personalized formats. Instead of watching an hour long news program, they can easily find the top headlines on social media, for example. Employees, therefore, want quick, on-the-go content, and are eager for learning and development solutions that are increasingly mobile and individualized.\n\nFinally, the need for employees to collaborate far more means learning needs to be more social. Employees now tend to report to a higher number of people in “matrixed” reporting structures and often must work with colleagues that they have never met or have much in common with (an engineer in Australia and a risk manager in Finland, say). This increasingly collaborative environment offers new challenges and opportunities for learning and development executives.\n\nMark Van Buren, practice leader of the CEB Learning and Development Leadership Council, discusses these trends and what they’ll mean for L&D professionals next year."
-          },
-          "externalMedia":
-          {
-            "url":"http://www.blogtalkradio.com/cebhr/2015/12/14/whats-in-store-for-learning-development-in-2016",
-            "Description":"Use this link to listen to the full podcast."
-          }
+            error: "There was a problem. Please retry later."
         }
-
-+ Response 404 (application/json)
-
-        {
-            "error": "Item not found."
-        }
-        
-        
