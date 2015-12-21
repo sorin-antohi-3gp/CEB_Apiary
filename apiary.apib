@@ -7,7 +7,7 @@ The API allows clients to consume CEB information in a JSON format.
 
 ## Trending Collection [/trending]
 
-### List Trending [POST]
+### Trending [POST]
 + Request (application/json)
     
     + Attributes
@@ -62,7 +62,7 @@ The API allows clients to consume CEB information in a JSON format.
         
 ## Trending Item [/trending/item]
 
-### List Trending Item [POST]
+### Trending Item [POST]
 + Request (application/json)
 
     + Attributes
@@ -102,3 +102,101 @@ The API allows clients to consume CEB information in a JSON format.
         {
             error: "There was a problem. Please retry later."
         }
+        
+        
+## Practices Collection [/practices]   
+
+### Practices [GET]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+            [{
+            "practiceId": 2,
+            "description": Finance,
+            "practiceName": "Finance",
+            "practiceShortName": FIN
+            },
+            {
+            "practiceId": 3,
+            "description": Financial Services,
+            "practiceName": "Financial Services",
+            "practiceShortName": FINSV
+            }]
+          
+## Practices Item [/practices/{practiceId}] 
+
+### List Pratice Item [GET]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "practiceId": 2,
+            "description": Finance,
+            "practiceName": "Finance",
+            "practiceShortName": FIN,
+        }
+
+
+## Programs Collection [/programs]   
+
+### Programs [GET]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+            [{
+                "programId": 117,
+                "programCode": "FLA",
+                "programKey": "finance-leadership-academy",
+                "programName": "Finance Leadership Academy",
+                "programNickName": "finance-leadership-academy",
+                "websiteId": "FLA",
+                "blogFeed": “https://www.executiveboard.com/finance-leadership-blog/feed/",
+                "blogPath": "https://www.executiveboard.com/ finance-leadership-blog",
+                "description": "FLA program",
+                "gaCodeForProgram": "UA-6233251-6",
+                "isActive": true,
+                "isPublicSite": false
+                "practiceId": 2
+            },
+            {
+                "programId": 130,
+                "programCode": "RBBO",
+                "programKey": "retail-banking-towergroup",
+                "programName": "CEB TowerGroup Retail Banking for Technology and Service      Providers",
+                "programNickName": "retail-banking-towergroup",
+                "websiteId": "RBBO",
+                "blogFeed": "https://www.executiveboard.com/tg-retail-banking-blog/feed/",
+                "blogPath": "https://www.executiveboard.com/tg-retail-banking-blog",
+                "description": "RBBO program",
+                "gaCodeForProgram": "UA-6233150-11",
+                "isActive": true,
+                "isPublicSite": false,
+                "practiceId": 3
+            }]
+          
+## Programs Item [/programs/{programId}] 
+
+### Programs Item [GET]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "programId": 130,
+            "programCode": "RBBO",
+            "programKey": "retail-banking-towergroup",
+            "programName": "CEB TowerGroup Retail Banking for Technology and Service      Providers",
+            "programNickName": "retail-banking-towergroup",
+            "websiteId": "RBBO",
+            "blogFeed": "https://www.executiveboard.com/tg-retail-banking-blog/feed/",
+            "blogPath": "https://www.executiveboard.com/tg-retail-banking-blog",
+            "description": "RBBO program",
+            "gaCodeForProgram": "UA-6233150-11",
+            "isActive": true,
+            "isPublicSite": false,
+            "practiceId": 3
+        }
+
